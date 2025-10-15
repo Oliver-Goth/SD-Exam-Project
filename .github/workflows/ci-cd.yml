@@ -28,7 +28,9 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: true
-          tags: your_dockerhub_user/mtogo-backend:latest
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/mtogo-backend:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/mtogo-backend:${{ github.sha }}
 
       - name: Build and push frontend image
         uses: docker/build-push-action@v6
@@ -36,7 +38,9 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           push: true
-          tags: your_dockerhub_user/mtogo-frontend:latest
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/mtogo-frontend:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/mtogo-frontend:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
