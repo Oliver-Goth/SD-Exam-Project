@@ -1,68 +1,102 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+.paymentWrapper {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center; /* centrerer vandret */
+  align-items: center;     /* centrerer lodret */
+  height: 100vh;           /* fylder hele skærmen */
+  gap: 20px;               /* afstand mellem kortene */
+  padding: 20px;
+  background-color: #f0f2f5; 
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.paymentCard {
+  width: 500px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #ffffff;
+  transition: transform 0.2s;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.paymentCard:hover {
+  transform: translateY(-3px);
+}
+
+.paymentCardHeader {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.paymentCardFooter {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.fui-Field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.myInput.fui-Input {
+  --borderRadiusMedium: 6px;
+  --colorNeutralBackground1: #f5f5f5;
+  --colorNeutralStroke1: #cccccc;
+  --colorNeutralForeground1: #222;
+  --colorNeutralStrokeOnHover: #1976d2;
+  width: 100%;
+}
+
+.myInput .fui-Input__input {
+  padding: 10px !important;
+  font-size: 14px !important;
+}
+
+.myInput.fui-Input:focus-within {
+  outline: none;
+  --colorNeutralStroke1: #1976d2;
+}
+
+.cvvField .fui-Input__input {
+  width: 120px !important;
+}
+
+.expiryField .fui-Input__input {
+  width: 100% !important;
+}
+
+.paymentList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.paymentList .fui-ListItem {
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.fui-Text {
+  color: #222;
+  font-size: 14px;
+}
+
+.fui-Button {
+  --borderRadiusMedium: 8px;
+  --colorNeutralBackground1: #1976d2;
+  --colorNeutralForeground1: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: background-color 0.2s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.fui-Button:hover {
+  --colorNeutralBackground1: #125aa0;
 }
+
+
