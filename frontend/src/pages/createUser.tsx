@@ -37,7 +37,7 @@ const createUserPage = () => (
         <Field><DatePicker placeholder="Select a date..." /></Field>
       </div>
       <CardFooter style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
-        <Button>Reply</Button>
+        <Button>Register</Button>
       </CardFooter>
     </Card>
   </div>
