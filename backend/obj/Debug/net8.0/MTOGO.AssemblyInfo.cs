@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MTOGO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24faa637ce6e9306d7b5f9f1ee6eccd0cab764f5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+575e6db8ced6a0269306b7291c3da3649ca6d608")]
 [assembly: System.Reflection.AssemblyProductAttribute("MTOGO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MTOGO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
