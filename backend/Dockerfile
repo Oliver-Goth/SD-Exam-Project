@@ -1,12 +1,10 @@
-# Build stage
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
-COPY . .
-RUN dotnet publish -c Release -o out
+# Use JDK only (no Maven)
+FROM eclipse-temurin:17-jdk-alpine
 
-# Runtime stage
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build /app/out .
-EXPOSE 5000
-ENTRYPOINT ["dotnet", "MTOGO.dll"]
+
+# Copy the prebuilt JAR from your local Maven build
+COPY target/*.jar app.jar
+
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
