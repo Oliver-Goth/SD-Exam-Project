@@ -1,20 +1,30 @@
 version: '3.9'
 
 services:
-  backend:
-    build: ./backend
-    container_name: mtogo_backend
-    env_file:
-      - .env
+
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    container_name: mtogo_gateway
     ports:
-      - "8080:8080"
+      - "${GATEWAY_PORT}:9000"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mtogo_backend
+    ports:
+      - "${BACKEND_PORT}:8080"
     environment:
-      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
-      SPRING_DATASOURCE_DRIVER_CLASS_NAME: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME}
-      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
-      SPRING_JPA_SHOW_SQL: ${SPRING_JPA_SHOW_SQL}
+      # Use the internal MySQL port (3306) inside the Docker network
+      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/mtogo?allowPublicKeyRetrieval=true&useSSL=false"
+      SPRING_DATASOURCE_USERNAME: "${MYSQL_USER}"
+      SPRING_DATASOURCE_PASSWORD: "${MYSQL_PASSWORD}"
     depends_on:
       - db
     restart: unless-stopped
@@ -23,15 +33,14 @@ services:
     image: mysql:8
     container_name: mtogo_db
     restart: unless-stopped
-    env_file:
-      - .env
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
     ports:
-      - "3307:3306"   # Avoid conflicts with local MySQL
+      # Map MySQL to a host port (default 3307 to avoid conflicts with local MySQL)
+      - "${MYSQL_PORT:-3307}:3306"
     volumes:
       - db_data:/var/lib/mysql
 

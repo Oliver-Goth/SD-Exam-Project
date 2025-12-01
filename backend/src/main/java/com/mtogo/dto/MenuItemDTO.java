@@ -1,12 +1,40 @@
 package com.mtogo.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.math.BigDecimal;
 
+@Schema(description = "Represents a menu item offered by a restaurant, including price and availability")
 public class MenuItemDTO {
+
+    @Schema(
+        description = "Unique identifier of the menu item",
+        example = "12"
+    )
     private Long id;
+
+    @Schema(
+        description = "Name of the menu item",
+        example = "Margherita Pizza"
+    )
     private String name;
+
+    @Schema(
+        description = "Short description of the menu item",
+        example = "Classic Italian pizza with tomato, mozzarella, and basil"
+    )
     private String description;
+
+    @Schema(
+        description = "Price of the menu item",
+        example = "89.95"
+    )
     private BigDecimal price;
+
+    @Schema(
+        description = "Whether the item is currently available for ordering",
+        example = "true"
+    )
     private boolean available;
 
     public MenuItemDTO() {}

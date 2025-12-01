@@ -5,6 +5,64 @@ MTOGO is a **legacy monolithic food delivery platform** being modernized using *
 This version containerizes the existing monolith with Docker to simplify deployment, testing, and future migration to microservices.
 
 
+##  Project Overview
+This system contains:
+
+### **1. Backend Service (Port 8080)**
+Provides REST APIs:
+- `/api/restaurants`
+- `/api/orders`
+- `/api/menu-items`
+- `/api/payments`
+
+### **2. API Gateway (Port 9000)**
+Routes external traffic to the backend service.
+
+### **3. MySQL Database (Port 3307)**
+Stores application data.
+
+---
+
+#  How to Run the Project
+
+## 1. Clone the repository
+```bash
+git clone https://github.com/YOUR_REPO_HERE
+cd MTOGO
+2. Build the backend & gateway JAR files
+Run Maven inside each service:
+cd backend
+mvn clean package -DskipTests
+cd ..
+
+cd gateway
+mvn clean package -DskipTests
+cd ..
+This creates:
+•	backend/target/backend-0.0.1-SNAPSHOT.jar
+•	gateway/target/gateway-0.0.1-SNAPSHOT.jar
+
+ 3. Start everything using Docker Compose
+From the project root:
+docker-compose build
+docker-compose up
+This starts all services:
+Service	Port	Description
+Gateway	9000	External API entry
+Backend	8080	Main API service
+MySQL	3307	Database
+
+4. Test the APIs
+Direct backend call:
+http://localhost:8080/api/restaurants
+Through Gateway (recommended):
+http://localhost:9000/api/restaurants
+Both should return the same result.
+ Stop the System
+docker-compose down
+To remove database volumes:
+docker-compose down --volumes
+
 
 ## 🏗️ Project Structure
 

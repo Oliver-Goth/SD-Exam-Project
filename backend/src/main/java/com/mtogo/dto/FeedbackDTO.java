@@ -1,11 +1,36 @@
 package com.mtogo.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.time.LocalDateTime;
 
+@Schema(description = "Customer feedback submitted after an order is delivered")
 public class FeedbackDTO {
+
+    @Schema(
+        description = "Unique identifier of the feedback entry",
+        example = "301"
+    )
     private Long id;
+
+    @Schema(
+        description = "Customer rating between 1 and 5",
+        example = "5",
+        minimum = "1",
+        maximum = "5"
+    )
     private int rating;
+
+    @Schema(
+        description = "Optional comments provided by the customer",
+        example = "Fantastic delivery service and very friendly courier!"
+    )
     private String comments;
+
+    @Schema(
+        description = "Timestamp when feedback was created",
+        example = "2025-05-13T14:30:00"
+    )
     private LocalDateTime createdAt;
 
     public FeedbackDTO() {}

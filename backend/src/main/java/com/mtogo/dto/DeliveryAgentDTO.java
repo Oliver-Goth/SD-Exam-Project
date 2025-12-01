@@ -1,10 +1,38 @@
 package com.mtogo.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Delivery agent information including status and vehicle details")
 public class DeliveryAgentDTO {
+
+    @Schema(
+        description = "Unique identifier of the delivery agent",
+        example = "42"
+    )
     private Long id;
+
+    @Schema(
+        description = "Full name of the delivery agent",
+        example = "Sara Larsen"
+    )
     private String name;
+
+    @Schema(
+        description = "Phone number used to contact the delivery agent",
+        example = "+45 9876 5432"
+    )
     private String phone;
+
+    @Schema(
+        description = "Type of vehicle used for deliveries",
+        example = "Bike"
+    )
     private String vehicleType;
+
+    @Schema(
+        description = "Whether the delivery agent is currently active and available",
+        example = "true"
+    )
     private boolean active;
 
     public DeliveryAgentDTO() {}
