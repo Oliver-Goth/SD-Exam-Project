@@ -44,12 +44,5 @@ Replace the port if you set a different `BACKEND_PORT`.
 - Delivery agents: `http://localhost:8080/api/agents/active` (GET)
 - Feedback: `http://localhost:8080/api/feedback/order/{orderId}` (POST, GET)
 
-## Run the backend jar without Docker
-```bash
-cd backend
-SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3307/mtogo?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true" \
-SPRING_DATASOURCE_USERNAME="mtogo_user" \
-SPRING_DATASOURCE_PASSWORD="secret" \
-java -jar target/*.jar
-```
+
 
